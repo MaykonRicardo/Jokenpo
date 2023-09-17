@@ -9,9 +9,13 @@
 			font-family: Helvetica;
 			font-weight: 400;
 		}
+		#titulo{
+			color: #0984e3;
+			text-align: center;
+		}
 		#placar {
 			display: flex;
-			align-content: center;
+			align-items: center;
 			justify-content: center;
 		}
 		#jogador, #computador {
@@ -25,9 +29,59 @@
 
 		#jogador {
 			background-color: #ff7675;
+
 		}
 		#computador {
 			background-color: #74b9ff;
+		}
+		#versus {
+			font-size: 40px;
+			text-align: center;
+			width: 70px;
+		}
+		#jogador-nome, #computador-nome {
+			margin: 0;
+			padding: 0;
+		}
+		#jogador-nome {
+			text-align: left;
+		}
+		#computador-nome {
+			text-align: right;
+		}
+		#jogador-pontos, #computador-pontos {
+			position: absolute;
+			top: 8px;
+			font-size: 32px;
+		}
+		#jogador-pontos{
+			right: 20px;
+		}
+		ul#jogador-escolha, ul#computador-escolha{
+			list-style: none;
+			text-align: center;
+			margin: 0;
+			padding: 0;
+		}
+		ul#jogador-escolha li, ul#computador-escolha li{
+			display: inline;
+		}
+		ul#jogador-escolha li a, ul#computador-escolha li a{
+			opacity: .2;
+		}
+		ul#jogador-escolha li a:hover{
+			opacity: 1;
+		}
+		
+		ul#jogador-escolha li a img, ul#computador-escolha li a img{
+			max-width: 100px;
+		}
+		#mensagens {
+			background-color: #b2bec3;
+			font-size: 32px;
+			border-radius: 5px;
+			margin: 40px 0;
+			padding: 20px;
 		}
 	</style>	
 </head>
@@ -36,12 +90,12 @@
 		<h1 id="titulo">Jokenpô</h1>
 		<div id="placar">
 			<div id="jogador">
-				<h2 id="jogador-nome">Felipe</h2>
+				<h2 id="jogador-nome">Maykon</h2>
 				<span id="jogador-pontos">0</span>
 				<ul id="jogador-escolha">
-					<li><a  id="jogador_escolha-1"><img src="img/pedra.png"></a></li>
-					<li><a 	id="jogador_escolha-2"><img src="img/papel.png"></a></li>
-					<li><a 	id="jogador_escolha-3"><img src="img/tesoura.png"></a></li>
+					<li><a  id="jogador_escolha-1" onclick="jogar(1)"><img src="img/pedra.png"></a></li>
+					<li><a 	id="jogador_escolha-2" onclick="jogar(2)"><img src="img/papel.png"></a></li>
+					<li><a 	id="jogador_escolha-3" onclick="jogar(3)"><img src="img/tesoura.png"></a></li>
 				</ul>
 			</div>
 
@@ -57,6 +111,47 @@
 				</ul>
 			</div>
 		</div>
-	</div>	
+		<div id="mensagens">Mensagens</div>
+	</div>
+	<script>
+		var jogadorEscolha = 0;
+		var computadorEscolha = 0;
+		var contador = 0;
+
+
+		function jogar(escolha) {
+			jogadorEscolha = escolha;
+			computadorEscolha =Math.floor((Math.random() * (3-1+1))) +1;
+			switch(contador){
+				case 1:
+					var image = document.getElementById('computador_escolha-1');
+					image.style.opacity = '.2';
+					break;
+				case 2:  
+					var image = document.getElementById('computador_escolha-2');
+					image.style.opacity = '.2';
+					break;
+				case 3:  
+					var image = document.getElementById('computador_escolha-3');
+					image.style.opacity = '.2';
+					break;
+			}
+			if(computadorEscolha==1){
+				var image = document.getElementById('computador_escolha-1');
+				image.style.opacity = '1';
+				contador = 1;
+
+			}if(computadorEscolha==2){
+				var image = document.getElementById('computador_escolha-2');
+				image.style.opacity = '1';
+				contador = 2;
+
+			}if(computadorEscolha==3){
+				var image = document.getElementById('computador_escolha-3');
+				image.style.opacity = '1';
+				contador = 3;
+			}
+		}
+	</script>	
 </body>
 </html>
